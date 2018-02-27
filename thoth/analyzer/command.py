@@ -1,8 +1,11 @@
 """Handling invoking commands of external programs in a sane way."""
 
 import json
+import logging
 
 import delegator
+
+_LOG = logging.getLogger(__name__)
 
 
 class CommandResult(object):
@@ -65,10 +68,12 @@ class CommandError(RuntimeError, CommandResult):
 
 def run_command(cmd, timeout=60, is_json=False, raise_on_error=True):
     """Run the given command, block until it finishes."""
+    _LOG.debug("Running command %r", cmd)
     command = delegator.run(cmd, block=True, timeout=timeout)
 
     if command.return_code != 0 and raise_on_error:
-        error_msg = "Failed to obtain information about running environment: {}".format(command.err)
+        error_msg = "Command exited with non-zero status code ({}): {}".format(command.return_code, command.err)
+        _LOG.debug(error_msg)
         raise CommandError(error_msg, command=command, is_json=is_json)
 
     return CommandResult(command, is_json=is_json)
