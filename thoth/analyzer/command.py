@@ -66,10 +66,10 @@ class CommandError(RuntimeError, CommandResult):
         CommandResult.__init__(self, command=command, **command_result_kwargs)
 
 
-def run_command(cmd, timeout=60, is_json=False, raise_on_error=True):
+def run_command(cmd, timeout=60, is_json=False, env=None, raise_on_error=True):
     """Run the given command, block until it finishes."""
     _LOG.debug("Running command %r", cmd)
-    command = delegator.run(cmd, block=True, timeout=timeout)
+    command = delegator.run(cmd, block=True, timeout=timeout, env=env)
 
     if command.return_code != 0 and raise_on_error:
         error_msg = "Command exited with non-zero status code ({}): {}".format(command.return_code, command.err)

@@ -8,9 +8,9 @@ name = "pypi"
 [packages]
 
 click = "*"
-"delegator.py" = "*"
 requests = "*"
 distro = "*"
+"delegator.py" = ">=0.1.0"
 
 
 [dev-packages]

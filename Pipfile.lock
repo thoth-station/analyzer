@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "12f04f0b6b899ceabe0205c803b4d46b7b830559c1c1b11a84fd10da07fc1308"
+            "sha256": "3d589c1bbb9149bd5bed5011e4f7c0c93e171f4027a7ecbf0c9a3cae1095df5c"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -50,10 +50,10 @@
         },
         "delegator.py": {
             "hashes": [
-                "sha256:b2552a818ec078f017688adb2044a86514d014d5854e5ac641ad614c357fa60b",
-                "sha256:27eb1585935ee5dd297a133bf0d91edb4fe84cc5615750fbfbcd6222cc66cc2b"
+                "sha256:58f3ea6fe36680e1d828e2e66e52844b826f186409dfee4436e42351b0e699fe",
+                "sha256:2d46966a7f484d271b09e2646eae1e9acadc4fdf2cb760c142f073e81c927d8d"
             ],
-            "version": "==0.0.14"
+            "version": "==0.1.0"
         },
         "distro": {
             "hashes": [
