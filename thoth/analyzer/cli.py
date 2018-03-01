@@ -36,7 +36,7 @@ def print_command_result(click_ctx: click.core.Command, result: typing.Union[dic
         'analyzer': analyzer,
         'datetime': datetime.datetime.now().isoformat(),
         'hostname': platform.node(),
-        'version': analyzer_version,
+        'analyzer_version': analyzer_version,
         'distribution': distro.info(),
         'arguments': _get_click_arguments(click_ctx),
         'python': {
