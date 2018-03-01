@@ -10,7 +10,7 @@ def get_install_requires():
 
 setup(
     name='thoth-analyzer',
-    version='0.0.3',
+    version='0.0.4',
     description='Analyzer library for project Thoht.',
     long_description='Analyzer library for project Thoht.',
     author='Fridolin Pokorny',
