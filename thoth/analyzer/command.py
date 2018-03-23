@@ -65,6 +65,15 @@ class CommandError(RuntimeError, CommandResult):
         RuntimeError.__init__(self, *args)
         CommandResult.__init__(self, command=command, **command_result_kwargs)
 
+    @property
+    def stdout(self):
+        """Standard output from invocation.
+
+        Override implementation for errors, not all tools product JSON or errors so try to avoid
+        parsing JSON implicitly.
+        """
+        return self.command.out
+
 
 def run_command(cmd, timeout=60, is_json=False, env=None, raise_on_error=True):
     """Run the given command, block until it finishes."""
