@@ -27,7 +27,7 @@ setup(
     long_description='Analyzer library for project Thoht.',
     author='Fridolin Pokorny',
     author_email='fridolin@redhat.com',
-    license='GPLv2+',
+    license='GPLv3+',
     packages=[
         'thoth.analyzer',
     ],
