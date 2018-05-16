@@ -30,6 +30,7 @@ class CommandResult(object):
     """Representation of result of a command invocation."""
 
     def __init__(self, command: delegator.Command, is_json: bool=False):
+        """Initialiaztion of a command result wrapper for delegator."""
         self.command = command
         self.is_json = is_json
         self._stdout = None
@@ -80,6 +81,7 @@ class CommandError(RuntimeError, CommandResult):
     """
 
     def __init__(self, *args, command: delegator.Command, **command_result_kwargs):
+        """Store information about command error."""
         RuntimeError.__init__(self, *args)
         CommandResult.__init__(self, command=command, **command_result_kwargs)
 
