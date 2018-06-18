@@ -29,6 +29,8 @@ import click
 import distro
 import requests
 
+from thoth.common import SafeJSONEncoder
+
 _LOG = logging.getLogger(__name__)
 
 
@@ -86,7 +88,7 @@ def print_command_result(click_ctx: click.core.Command, result: typing.Union[dic
         kwargs['separators'] = (',', ': ')
         kwargs['indent'] = 2
 
-    content = json.dumps(content, **kwargs)
+    content = json.dumps(content, **kwargs, cls=SafeJSONEncoder)
     if output is None or output == '-':
         sys.stdout.write(content)
     else:
