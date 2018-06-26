@@ -40,7 +40,9 @@ def _get_click_arguments(click_ctx: click.core.Command) -> dict:
 
     ctx = click_ctx
     while ctx:
+        # Ignore PycodestyleBear (E501)
         assert ctx.info_name not in arguments, "Analyzers cannot use nested sub-commands with same name"
+        # Ignore PycodestyleBear (E501)
         assert not ctx.args, "Analyzer cannot accept positional arguments, all arguments should be named"
 
         arguments[ctx.info_name] = dict(ctx.params)
@@ -49,8 +51,10 @@ def _get_click_arguments(click_ctx: click.core.Command) -> dict:
     return arguments
 
 
-def print_command_result(click_ctx: click.core.Command, result: typing.Union[dict, list],
-                         analyzer: str, analyzer_version: str, output: str = None, pretty: bool = True) -> None:
+def print_command_result(click_ctx: click.core.Command,
+                         result: typing.Union[dict, list], analyzer: str,
+                         analyzer_version: str, output: str = None,
+                         pretty: bool = True) -> None:
     """Print or submit results, nicely if requested."""
     metadata = {
         'analyzer': analyzer,
@@ -79,7 +83,8 @@ def print_command_result(click_ctx: click.core.Command, result: typing.Union[dic
         _LOG.info("Submitting results to %r", output)
         response = requests.post(output, json=content)
         response.raise_for_status()
-        _LOG.info("Successfully submitted results to remote, response: %s", response.json())
+        _LOG.info(
+            "Successfully submitted results to remote, response: %s", response.json())  # Ignore PycodestyleBear (E501)
         return
 
     kwargs = {}
