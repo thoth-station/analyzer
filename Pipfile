@@ -11,7 +11,9 @@ distro = "*"
 thoth-common = "*"
 
 [dev-packages]
-coala = "*"
-pycodestylebear = "*"
-yamllintbear = "*"
-pydocstylebear = "*"
+pytest = "*"
+pytest-timeout = "*"
+pytest-cov = "*"
+pydocstyle = "*"
+pylint = "*"
+coala-bears = "*"
