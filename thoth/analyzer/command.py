@@ -29,7 +29,7 @@ _LOG = logging.getLogger(__name__)
 class CommandResult(object):
     """Representation of result of a command invocation."""
 
-    def __init__(self, command: delegator.Command, is_json: bool=False):
+    def __init__(self, command: delegator.Command, is_json: bool = False):
         """Initialiaztion of a command result wrapper for delegator."""
         self.command = command
         self.is_json = is_json
@@ -80,17 +80,19 @@ class CommandError(RuntimeError, CommandResult):
     access to_dict() or other defined methods.
     """
 
-    def __init__(self, *args, command: delegator.Command, **command_result_kwargs):
+    def __init__(self, *args, command: delegator.Command,
+                 **command_result_kwargs):
         """Store information about command error."""
         RuntimeError.__init__(self, *args)
-        CommandResult.__init__(self, command=command, **command_result_kwargs)
+        CommandResult.__init__(self, command=command,
+                               **command_result_kwargs)
 
     @property
     def stdout(self):
         """Standard output from invocation.
 
-        Override implementation for errors, not all tools product JSON or errors so try to avoid
-        parsing JSON implicitly.
+        Override implementation for errors, not all tools product JSON or
+        errors so try to avoid parsing JSON implicitly.
         """
         return self.command.out
 
@@ -101,7 +103,8 @@ def run_command(cmd, timeout=60, is_json=False, env=None, raise_on_error=True):
     command = delegator.run(cmd, block=True, timeout=timeout, env=env)
 
     if command.return_code != 0 and raise_on_error:
-        error_msg = "Command exited with non-zero status code ({}): {}".format(command.return_code, command.err)
+        error_msg = "Command exited with non-zero status code ({}): {}".format(
+            command.return_code, command.err)
         _LOG.debug(error_msg)
         raise CommandError(error_msg, command=command, is_json=is_json)
 

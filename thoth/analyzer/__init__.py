@@ -6,4 +6,4 @@ from .command import CommandResult
 from .command import run_command
 
 __title__ = 'thoth-analyzer'
-__version__ = '0.0.6'
+__version__ = '0.0.7'
