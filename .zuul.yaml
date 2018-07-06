@@ -2,17 +2,14 @@
     check:
       jobs:
         - linters
-        
     gate:
       queue: core
       jobs:
         - linters
-        
     sesheta-auto-gate:
       queue: core
       jobs:
         - linters
-
     release:
       jobs:
         - upload-pypi-sesheta
