@@ -23,6 +23,7 @@ import json
 import logging
 import platform
 import sys
+import time
 import typing
 
 import click
@@ -30,6 +31,7 @@ import distro
 import requests
 
 from thoth.common import SafeJSONEncoder
+from thoth.common import datetime2datetime_str
 
 _LOG = logging.getLogger(__name__)
 
@@ -58,7 +60,8 @@ def print_command_result(click_ctx: click.core.Command,
     """Print or submit results, nicely if requested."""
     metadata = {
         'analyzer': analyzer,
-        'datetime': datetime.datetime.now().isoformat(),
+        'datetime': datetime2datetime_str(datetime.datetime.utcnow()),
+        'timestamp': int(time.time()),
         'hostname': platform.node(),
         'analyzer_version': analyzer_version,
         'distribution': distro.info(),
