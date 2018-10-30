@@ -111,11 +111,11 @@
         },
         "thoth-common": {
             "hashes": [
-                "sha256:0ca00dc1a826885216de02d81f5cdf10ea6b570d91473e40b4b4d9f0e29e210a",
-                "sha256:93e0f8cab4076b7b30543113cecbb16410f1e44beedf445c6da6239c438903d9"
+                "sha256:5213daa7c804850da1199785eb521eff3f05f85bff6c34bac071f5d983995ebf",
+                "sha256:fa4082df05ce47bda6c7657b585db3561893bf21db062a201c1014befba57f67"
             ],
             "index": "pypi",
-            "version": "==0.3.6"
+            "version": "==0.3.14"
         },
         "tzlocal": {
             "hashes": [
@@ -622,11 +622,11 @@
         },
         "pytest": {
             "hashes": [
-                "sha256:7e258ee50338f4e46957f9e09a0f10fb1c2d05493fa901d113a8dafd0790de4e",
-                "sha256:9332147e9af2dcf46cd7ceb14d5acadb6564744ddff1fe8c17f0ce60ece7d9a2"
+                "sha256:a9e5e8d7ab9d5b0747f37740276eb362e6a76275d76cebbb52c6049d93b475db",
+                "sha256:bf47e8ed20d03764f963f0070ff1c8fda6e2671fc5dd562a4d3b7148ad60f5ca"
             ],
             "index": "pypi",
-            "version": "==3.8.2"
+            "version": "==3.9.3"
         },
         "pytest-cov": {
             "hashes": [
