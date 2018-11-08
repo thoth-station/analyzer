@@ -87,7 +87,7 @@ def print_command_result(click_ctx: click.core.Command,
         response = requests.post(output, json=content)
         response.raise_for_status()
         _LOG.info(
-            "Successfully submitted results to remote, response: %s", response.json())  # Ignore PycodestyleBear (E501)
+            "Successfully submitted results to %r, response: %s", output, response.json())  # Ignore PycodestyleBear (E501)
         return
 
     kwargs = {}
