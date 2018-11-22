@@ -1,5 +1,6 @@
 import os
 from setuptools import setup
+from pathlib import Path
 
 
 def get_install_requires():
@@ -25,6 +26,7 @@ setup(
     version=get_version(),
     description='Analyzer library for project Thoht.',
     long_description='Analyzer library for project Thoht.',
+    long_description=Path('README.rst').read_text(),
     author='Fridolin Pokorny',
     author_email='fridolin@redhat.com',
     license='GPLv3+',
