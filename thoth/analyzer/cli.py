@@ -47,7 +47,17 @@ def _get_click_arguments(click_ctx: click.core.Command) -> dict:
         # Ignore PycodestyleBear (E501)
         assert not ctx.args, "Analyzer cannot accept positional arguments, all arguments should be named"
 
-        arguments[ctx.info_name] = dict(ctx.params)
+        report = {}
+        for key, value in dict(ctx.params).items():
+            # If the given argument was provided as a JSON, parse it so we have structured reports.
+            try:
+                value = json.loads(value)
+            except Exception:
+                pass
+            report[key] = value
+
+        arguments[ctx.info_name] = report
+
         ctx = ctx.parent
 
     return arguments
