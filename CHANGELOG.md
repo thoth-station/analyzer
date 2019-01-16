@@ -45,3 +45,30 @@ Starting with this release we have a Zuul-CI pipeline that:
 * Update .zuul.yaml
 * Remove pydocstyle from dev dependencies
 * A dummy change for Kebechet testing
+
+## Release 0.1.1 (2019-01-16T09:17:53)
+* Automatic update of dependency pytest from 4.0.1 to 4.0.2
+* Keep JSON arguments parsed in documents
+* Automatic update of dependency thoth-common from 0.4.6 to 0.5.0
+* Automatic update of dependency requests from 2.20.1 to 2.21.0
+* Automatic update of dependency pytest from 4.0.0 to 4.0.1
+* Automatic update of dependency thoth-common from 0.4.4 to 0.4.6
+* Add long description to PyPI
+* Automatic update of dependency thoth-common from 0.4.3 to 0.4.4
+* Automatic update of dependency thoth-common from 0.4.2 to 0.4.3
+* Automatic update of dependency thoth-common from 0.4.1 to 0.4.2
+* Automatic update of dependency pytest-timeout from 1.3.2 to 1.3.3
+* Automatic update of dependency thoth-common from 0.4.0 to 0.4.1
+* Automatic update of dependency pytest from 3.10.1 to 4.0.0
+* Automatic update of dependency pytest from 3.10.0 to 3.10.1
+* Automatic update of dependency requests from 2.20.0 to 2.20.1
+* lets have a simple version string
+* added detailed version string and a little more logging
+* Automatic update of dependency thoth-common from 0.3.16 to 0.4.0
+* Automatic update of dependency pytest from 3.9.3 to 3.10.0
+* Automatic update of dependency thoth-common from 0.3.15 to 0.3.16
+* Automatic update of dependency thoth-common from 0.3.14 to 0.3.15
+* Automatic update of dependency pytest from 3.8.2 to 3.9.3
+* Automatic update of dependency thoth-common from 0.3.6 to 0.3.14
+* using thoht-* jobs now
+* Automatic update of dependency requests from 2.19.1 to 2.20.0
