@@ -25,7 +25,6 @@ setup(
     name='thoth-analyzer',
     version=get_version(),
     description='Analyzer library for project Thoht.',
-    long_description='Analyzer library for project Thoht.',
     long_description=Path('README.rst').read_text(),
     author='Fridolin Pokorny',
     author_email='fridolin@redhat.com',
