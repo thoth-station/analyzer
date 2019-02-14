@@ -78,3 +78,7 @@ Starting with this release we have a Zuul-CI pipeline that:
 * Automatic update of dependency thoth-common from 0.3.6 to 0.3.14
 * using thoht-* jobs now
 * Automatic update of dependency requests from 2.19.1 to 2.20.0
+
+## Release 0.1.2 (2019-02-14T12:35:47)
+* Add missing MANIFEST.in
+* Fix repeated keyword argument
