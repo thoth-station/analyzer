@@ -21,9 +21,10 @@ def get_version():
     raise ValueError("No version identifier found")
 
 
+VERSION = get_version()
 setup(
     name='thoth-analyzer',
-    version=get_version(),
+    version=VERSION,
     description='Analyzer library for project Thoht.',
     long_description=Path('README.rst').read_text(),
     author='Fridolin Pokorny',
@@ -33,5 +34,10 @@ setup(
         'thoth.analyzer',
     ],
     zip_safe=False,
-    install_requires=get_install_requires()
+    install_requires=get_install_requires(),
+    command_options={
+        'build_sphinx': {
+            'version': ('setup.py', VERSION),
+        }
+    }
 )

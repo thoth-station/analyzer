@@ -1,7 +1,7 @@
-thoth-analyzer
+Thoth Analyzer
 --------------
 
-A library with common functionality for Thoth's analyzers run in OpenShift.
+A library with common functionality for Thoth's workloads (jobs and CLIs) run in OpenShift.
 
 The library provides common functionality for analyzers. It is supposed to be
 a base for implementing any new analyzer in the Thoth project.
@@ -14,7 +14,7 @@ Currently, there are implemented two core components:
 Installation
 ============
 
-This package is realased on PyPI as `thoth-storages
+This package is realased on PyPI as `thoth-analyzer
 <https://pypi.org/project/thoth-analyzer>`_. Thus you can install this
 package using pip or pipenv:
 
