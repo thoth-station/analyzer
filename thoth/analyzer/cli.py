@@ -65,7 +65,8 @@ def _get_click_arguments(click_ctx: click.core.Command) -> dict:
 def print_command_result(click_ctx: click.core.Command,
                          result: typing.Union[dict, list], analyzer: str,
                          analyzer_version: str, output: str = None,
-                         pretty: bool = True) -> None:
+                         pretty: bool = True,
+                         dry_run: bool = False) -> None:
     """Print or submit results, nicely if requested."""
     metadata = {
         'analyzer': analyzer,
@@ -90,6 +91,11 @@ def print_command_result(click_ctx: click.core.Command,
         'result': result,
         'metadata': metadata
     }
+
+    if dry_run:
+        _LOG.info("Printing results to log")
+        _LOG.info(content)
+        return
 
     if isinstance(output, str) and output.startswith(('http://', 'https://')):
         _LOG.info("Submitting results to %r", output)
