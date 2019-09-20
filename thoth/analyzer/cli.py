@@ -50,7 +50,9 @@ def _get_click_arguments(click_ctx: click.core.Command) -> dict:
         for key, value in dict(ctx.params).items():
             # If the given argument was provided as a JSON, parse it so we have structured reports.
             try:
-                value = json.loads(value)
+                parsed_value = json.loads(value)
+                if isinstance(parsed_value, dict):
+                    value = parsed_value
             except Exception:
                 pass
             report[key] = value
