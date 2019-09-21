@@ -82,3 +82,47 @@ Starting with this release we have a Zuul-CI pipeline that:
 ## Release 0.1.2 (2019-02-14T12:35:47)
 * Add missing MANIFEST.in
 * Fix repeated keyword argument
+
+## Release 0.1.3 (2019-09-21T11:53:34)
+* Fix handling of non-json values as parameters
+* :pushpin: Automatic update of dependency thoth-common from 0.9.9 to 0.9.10
+* :pushpin: Automatic update of dependency thoth-common from 0.9.8 to 0.9.9
+* Add dry-run
+* :pushpin: Automatic update of dependency pytest from 5.1.1 to 5.1.2
+* :pushpin: Automatic update of dependency pytest from 5.1.0 to 5.1.1
+* :pushpin: Automatic update of dependency pytest from 5.0.1 to 5.1.0
+* :pushpin: Automatic update of dependency thoth-common from 0.9.7 to 0.9.8
+* :pushpin: Automatic update of dependency thoth-common from 0.9.6 to 0.9.7
+* :pushpin: Automatic dependency re-locking
+* Add advise and provenance-checker managers
+* :pushpin: Automatic update of dependency thoth-common from 0.9.4 to 0.9.5
+* :pushpin: Automatic update of dependency thoth-common from 0.9.3 to 0.9.4
+* :pushpin: Automatic update of dependency thoth-common from 0.9.2 to 0.9.3
+* :pushpin: Automatic update of dependency thoth-common from 0.9.1 to 0.9.2
+* :pushpin: Automatic update of dependency pytest from 5.0.0 to 5.0.1
+* :pushpin: Automatic update of dependency pytest from 4.6.3 to 5.0.0
+* :pushpin: Automatic update of dependency thoth-common from 0.9.0 to 0.9.1
+* :pushpin: Automatic update of dependency thoth-common from 0.8.11 to 0.9.0
+* :pushpin: Automatic update of dependency pytest from 4.6.2 to 4.6.3
+* :pushpin: Automatic update of dependency thoth-common from 0.8.7 to 0.8.11
+* :pushpin: Automatic update of dependency pytest from 4.5.0 to 4.6.2
+* :pushpin: Automatic update of dependency requests from 2.21.0 to 2.22.0
+* :pushpin: Automatic update of dependency thoth-common from 0.8.5 to 0.8.7
+* :pushpin: Automatic update of dependency pytest from 4.4.2 to 4.5.0
+* :pushpin: Automatic update of dependency pytest from 4.4.2 to 4.5.0
+* :pushpin: Automatic update of dependency pytest from 4.4.1 to 4.4.2
+* Minor fix to display correct release in title of docs html
+* :pushpin: Automatic update of dependency pytest-cov from 2.6.1 to 2.7.1
+* :pushpin: Automatic update of dependency pytest from 4.4.0 to 4.4.1
+* :pushpin: Automatic update of dependency thoth-common from 0.8.4 to 0.8.5
+* Automatic update of dependency thoth-common from 0.8.3 to 0.8.4
+* Automatic update of dependency thoth-common from 0.8.2 to 0.8.3
+* Automatic update of dependency thoth-common from 0.8.1 to 0.8.2
+* Automatic update of dependency pytest from 4.3.1 to 4.4.0
+* Add Thoth's configuration file
+* Add Thoth's configuration file
+* Automatic update of dependency thoth-common from 0.8.0 to 0.8.1
+* Automatic update of dependency thoth-common from 0.7.1 to 0.8.0
+* Use Sphinx for documentation
+* Automatic update of dependency pytest from 4.3.0 to 4.3.1
+* Automatic update of dependency pytest from 4.2.1 to 4.3.0
