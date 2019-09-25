@@ -67,7 +67,7 @@ def _get_click_arguments(click_ctx: click.core.Command) -> dict:
 def print_command_result(click_ctx: click.core.Command,
                          result: typing.Union[dict, list], analyzer: str,
                          analyzer_version: str, output: str = None,
-                         duration: int = 0,
+                         duration: float = None,
                          pretty: bool = True,
                          dry_run: bool = False) -> None:
     """Print or submit results, nicely if requested."""
@@ -79,7 +79,7 @@ def print_command_result(click_ctx: click.core.Command,
         'analyzer_version': analyzer_version,
         'distribution': distro.info(),
         'arguments': _get_click_arguments(click_ctx),
-        'duration': duration,
+        'duration': int(duration),
         'python': {
             'major': sys.version_info.major,
             'minor': sys.version_info.minor,
