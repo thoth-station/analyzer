@@ -79,7 +79,7 @@ def print_command_result(click_ctx: click.core.Command,
         'analyzer_version': analyzer_version,
         'distribution': distro.info(),
         'arguments': _get_click_arguments(click_ctx),
-        'duration': int(duration),
+        'duration': int(duration) if duration is not None else None,
         'python': {
             'major': sys.version_info.major,
             'minor': sys.version_info.minor,
