@@ -126,3 +126,9 @@ Starting with this release we have a Zuul-CI pipeline that:
 * Use Sphinx for documentation
 * Automatic update of dependency pytest from 4.3.0 to 4.3.1
 * Automatic update of dependency pytest from 4.2.1 to 4.3.0
+
+## Release 0.1.4 (2019-09-27T08:36:28)
+* Cast duration if it has some value
+* Cast duration to int
+* Add duration for analyzer results
+* :pushpin: Automatic update of dependency pytest from 5.1.2 to 5.1.3
