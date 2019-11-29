@@ -17,6 +17,7 @@
 
 """Base command line helpers for analyzers."""
 
+import os
 import datetime
 import json
 import logging
@@ -74,6 +75,7 @@ def print_command_result(click_ctx: click.core.Command,
     metadata = {
         'analyzer': analyzer,
         'datetime': datetime2datetime_str(datetime.datetime.utcnow()),
+        'document_id': os.getenv("THOTH_DOCUMENT_ID"),
         'timestamp': int(time.time()),
         'hostname': platform.node(),
         'analyzer_version': analyzer_version,
