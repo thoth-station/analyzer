@@ -132,3 +132,21 @@ Starting with this release we have a Zuul-CI pipeline that:
 * Cast duration to int
 * Add duration for analyzer results
 * :pushpin: Automatic update of dependency pytest from 5.1.2 to 5.1.3
+
+## Release 0.1.5 (2019-11-29T11:27:20)
+* :pushpin: Automatic dependency re-locking
+* Report document id based on variable supplied
+* :pushpin: Automatic update of dependency pytest from 5.3.0 to 5.3.1
+* :pushpin: Automatic update of dependency pytest from 5.2.4 to 5.3.0
+* :pushpin: Automatic update of dependency pytest from 5.2.3 to 5.2.4
+* :pushpin: Automatic update of dependency pytest from 5.2.2 to 5.2.3
+* :pushpin: Automatic update of dependency thoth-common from 0.9.15 to 0.9.16
+* :pushpin: Automatic update of dependency thoth-common from 0.9.14 to 0.9.15
+* :pushpin: Automatic update of dependency pytest from 5.2.1 to 5.2.2
+* :pushpin: Automatic update of dependency thoth-common from 0.9.12 to 0.9.14
+* :pushpin: Automatic update of dependency thoth-common from 0.9.11 to 0.9.12
+* :pushpin: Automatic update of dependency pytest from 5.2.0 to 5.2.1
+* :pushpin: Automatic update of dependency pytest-cov from 2.8.0 to 2.8.1
+* :pushpin: Automatic update of dependency pytest-cov from 2.7.1 to 2.8.0
+* :pushpin: Automatic update of dependency thoth-common from 0.9.10 to 0.9.11
+* :pushpin: Automatic update of dependency pytest from 5.1.3 to 5.2.0
