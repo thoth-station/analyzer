@@ -34,6 +34,19 @@ from thoth.common import SafeJSONEncoder
 from thoth.common import datetime2datetime_str
 
 _LOG = logging.getLogger(__name__)
+_ETC_OS_RELEASE = "/etc/os-release"
+_OS_RELEASE_KEYS = frozenset((
+    "id",
+    "name",
+    "platform_id",
+    "redhat_bugzilla_product",
+    "redhat_bugzilla_product_version",
+    "redhat_support_product",
+    "redhat_support_product_version",
+    "variant_id",
+    "version",
+    "version_id",
+))
 
 
 def _get_click_arguments(click_ctx: click.core.Command) -> dict:
@@ -65,6 +78,32 @@ def _get_click_arguments(click_ctx: click.core.Command) -> dict:
     return arguments
 
 
+def _gather_os_release():
+    """Gather information about operating system used."""
+    if not os.path.isfile(_ETC_OS_RELEASE):
+        return None
+
+    try:
+        with open(_ETC_OS_RELEASE, "r") as os_release_file:
+            content = os_release_file.read()
+    except Exception:
+        return None
+
+    result = {}
+    for line in content.splitlines():
+        parts = line.split("=", maxsplit=1)
+        if len(parts) != 2:
+            continue
+
+        key = parts[0].lower()
+        value = parts[1].strip('"')
+
+        result[key] = value
+
+    # Filter out some of the entries, keep just the most important ones.
+    return {k: v for k, v in result.items() if k in _OS_RELEASE_KEYS}
+
+
 def print_command_result(click_ctx: click.core.Command,
                          result: typing.Union[dict, list], analyzer: str,
                          analyzer_version: str, output: str = None,
@@ -90,7 +129,8 @@ def print_command_result(click_ctx: click.core.Command,
             'serial': sys.version_info.serial,
             'api_version': sys.api_version,
             'implementation_name': sys.implementation.name
-        }
+        },
+        "os_release": _gather_os_release(),
     }
 
     content = {
