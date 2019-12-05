@@ -150,3 +150,11 @@ Starting with this release we have a Zuul-CI pipeline that:
 * :pushpin: Automatic update of dependency pytest-cov from 2.7.1 to 2.8.0
 * :pushpin: Automatic update of dependency thoth-common from 0.9.10 to 0.9.11
 * :pushpin: Automatic update of dependency pytest from 5.1.3 to 5.2.0
+
+## Release 0.1.6 (2019-12-05T16:50:35)
+* Gather operating system information for each analyzer
+* :pushpin: Automatic update of dependency thoth-common from 0.9.20 to 0.9.21
+* Change Sphinx theme
+* :pushpin: Automatic update of dependency thoth-common from 0.9.19 to 0.9.20
+* :pushpin: Automatic update of dependency thoth-common from 0.9.18 to 0.9.19
+* :pushpin: Automatic update of dependency thoth-common from 0.9.17 to 0.9.18
