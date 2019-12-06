@@ -131,6 +131,7 @@ def print_command_result(click_ctx: click.core.Command,
             'implementation_name': sys.implementation.name
         },
         "os_release": _gather_os_release(),
+        "thoth_deployment_name": os.getenv("THOTH_DEPLOYMENT_NAME"),
     }
 
     content = {
