@@ -63,12 +63,12 @@ class CommandResult(object):
     def to_dict(self):
         """Represent command result as a dict."""
         return {
-            'stdout': self.stdout,
-            'stderr': self.stderr,
-            'return_code': self.return_code,
-            'command': self.command.cmd,
-            'timeout': self.timeout,
-            'message': str(self)
+            "stdout": self.stdout,
+            "stderr": self.stderr,
+            "return_code": self.return_code,
+            "command": self.command.cmd,
+            "timeout": self.timeout,
+            "message": str(self),
         }
 
 
@@ -79,12 +79,10 @@ class CommandError(RuntimeError, CommandResult):
     access to_dict() or other defined methods.
     """
 
-    def __init__(self, *args, command: delegator.Command,
-                 **command_result_kwargs):
+    def __init__(self, *args, command: delegator.Command, **command_result_kwargs):
         """Store information about command error."""
         RuntimeError.__init__(self, *args)
-        CommandResult.__init__(self, command=command,
-                               **command_result_kwargs)
+        CommandResult.__init__(self, command=command, **command_result_kwargs)
 
     @property
     def stdout(self):
@@ -103,7 +101,8 @@ def run_command(cmd, timeout=60, is_json=False, env=None, raise_on_error=True):
 
     if command.return_code != 0 and raise_on_error:
         error_msg = "Command exited with non-zero status code ({}): {}".format(
-            command.return_code, command.err)
+            command.return_code, command.err
+        )
         _LOG.debug(error_msg)
         raise CommandError(error_msg, command=command, is_json=is_json)
 

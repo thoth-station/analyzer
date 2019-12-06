@@ -35,18 +35,20 @@ from thoth.common import datetime2datetime_str
 
 _LOG = logging.getLogger(__name__)
 _ETC_OS_RELEASE = "/etc/os-release"
-_OS_RELEASE_KEYS = frozenset((
-    "id",
-    "name",
-    "platform_id",
-    "redhat_bugzilla_product",
-    "redhat_bugzilla_product_version",
-    "redhat_support_product",
-    "redhat_support_product_version",
-    "variant_id",
-    "version",
-    "version_id",
-))
+_OS_RELEASE_KEYS = frozenset(
+    (
+        "id",
+        "name",
+        "platform_id",
+        "redhat_bugzilla_product",
+        "redhat_bugzilla_product_version",
+        "redhat_support_product",
+        "redhat_support_product_version",
+        "variant_id",
+        "version",
+        "version_id",
+    )
+)
 
 
 def _get_click_arguments(click_ctx: click.core.Command) -> dict:
@@ -56,9 +58,13 @@ def _get_click_arguments(click_ctx: click.core.Command) -> dict:
     ctx = click_ctx
     while ctx:
         # Ignore PycodestyleBear (E501)
-        assert ctx.info_name not in arguments, "Analyzers cannot use nested sub-commands with same name"
+        assert (
+            ctx.info_name not in arguments
+        ), "Analyzers cannot use nested sub-commands with same name"
         # Ignore PycodestyleBear (E501)
-        assert not ctx.args, "Analyzer cannot accept positional arguments, all arguments should be named"
+        assert (
+            not ctx.args
+        ), "Analyzer cannot accept positional arguments, all arguments should be named"
 
         report = {}
         for key, value in dict(ctx.params).items():
@@ -104,64 +110,68 @@ def _gather_os_release():
     return {k: v for k, v in result.items() if k in _OS_RELEASE_KEYS}
 
 
-def print_command_result(click_ctx: click.core.Command,
-                         result: typing.Union[dict, list], analyzer: str,
-                         analyzer_version: str, output: str = None,
-                         duration: float = None,
-                         pretty: bool = True,
-                         dry_run: bool = False) -> None:
+def print_command_result(
+    click_ctx: click.core.Command,
+    result: typing.Union[dict, list],
+    analyzer: str,
+    analyzer_version: str,
+    output: str = None,
+    duration: float = None,
+    pretty: bool = True,
+    dry_run: bool = False,
+) -> None:
     """Print or submit results, nicely if requested."""
     metadata = {
-        'analyzer': analyzer,
-        'datetime': datetime2datetime_str(datetime.datetime.utcnow()),
-        'document_id': os.getenv("THOTH_DOCUMENT_ID"),
-        'timestamp': int(time.time()),
-        'hostname': platform.node(),
-        'analyzer_version': analyzer_version,
-        'distribution': distro.info(),
-        'arguments': _get_click_arguments(click_ctx),
-        'duration': int(duration) if duration is not None else None,
-        'python': {
-            'major': sys.version_info.major,
-            'minor': sys.version_info.minor,
-            'micro': sys.version_info.micro,
-            'releaselevel': sys.version_info.releaselevel,
-            'serial': sys.version_info.serial,
-            'api_version': sys.api_version,
-            'implementation_name': sys.implementation.name
+        "analyzer": analyzer,
+        "datetime": datetime2datetime_str(datetime.datetime.utcnow()),
+        "document_id": os.getenv("THOTH_DOCUMENT_ID"),
+        "timestamp": int(time.time()),
+        "hostname": platform.node(),
+        "analyzer_version": analyzer_version,
+        "distribution": distro.info(),
+        "arguments": _get_click_arguments(click_ctx),
+        "duration": int(duration) if duration is not None else None,
+        "python": {
+            "major": sys.version_info.major,
+            "minor": sys.version_info.minor,
+            "micro": sys.version_info.micro,
+            "releaselevel": sys.version_info.releaselevel,
+            "serial": sys.version_info.serial,
+            "api_version": sys.api_version,
+            "implementation_name": sys.implementation.name,
         },
         "os_release": _gather_os_release(),
         "thoth_deployment_name": os.getenv("THOTH_DEPLOYMENT_NAME"),
     }
 
-    content = {
-        'result': result,
-        'metadata': metadata
-    }
+    content = {"result": result, "metadata": metadata}
 
     if dry_run:
         _LOG.info("Printing results to log")
         _LOG.info(content)
         return
 
-    if isinstance(output, str) and output.startswith(('http://', 'https://')):
+    if isinstance(output, str) and output.startswith(("http://", "https://")):
         _LOG.info("Submitting results to %r", output)
         response = requests.post(output, json=content)
         response.raise_for_status()
         _LOG.info(
-            "Successfully submitted results to %r, response: %s", output, response.json())  # Ignore PycodestyleBear (E501)
+            "Successfully submitted results to %r, response: %s",
+            output,
+            response.json(),
+        )  # Ignore PycodestyleBear (E501)
         return
 
     kwargs = {}
     if pretty:
-        kwargs['sort_keys'] = True
-        kwargs['separators'] = (',', ': ')
-        kwargs['indent'] = 2
+        kwargs["sort_keys"] = True
+        kwargs["separators"] = (",", ": ")
+        kwargs["indent"] = 2
 
     content = json.dumps(content, **kwargs, cls=SafeJSONEncoder)
-    if output is None or output == '-':
+    if output is None or output == "-":
         sys.stdout.write(content)
     else:
         _LOG.info("Writing results to %r", output)
-        with open(output, 'w') as output_file:
+        with open(output, "w") as output_file:
             output_file.write(content)
