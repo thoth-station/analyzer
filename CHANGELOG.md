@@ -158,3 +158,10 @@ Starting with this release we have a Zuul-CI pipeline that:
 * :pushpin: Automatic update of dependency thoth-common from 0.9.19 to 0.9.20
 * :pushpin: Automatic update of dependency thoth-common from 0.9.18 to 0.9.19
 * :pushpin: Automatic update of dependency thoth-common from 0.9.17 to 0.9.18
+
+## Release 0.1.7 (2019-12-09T11:58:16)
+* Add Thamos documentation
+* Point documentation to other libraries
+* Reformat using black
+* Add Thoth's deployment name to document metadata
+* Add Google Analytics
