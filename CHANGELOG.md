@@ -165,3 +165,14 @@ Starting with this release we have a Zuul-CI pipeline that:
 * Reformat using black
 * Add Thoth's deployment name to document metadata
 * Add Google Analytics
+
+## Release 0.1.8 (2020-01-16T13:42:06)
+* Parse also a list and null value from command line arguments
+* :pushpin: Automatic update of dependency thoth-common from 0.9.25 to 0.9.26
+* :pushpin: Automatic update of dependency thoth-common from 0.9.24 to 0.9.25
+* :pushpin: Automatic update of dependency thoth-common from 0.9.23 to 0.9.24
+* :pushpin: Automatic update of dependency thoth-common from 0.9.22 to 0.9.23
+* :pushpin: Automatic update of dependency pytest-timeout from 1.3.3 to 1.3.4
+* Happy new year!
+* :pushpin: Automatic update of dependency pytest from 5.3.1 to 5.3.2
+* :pushpin: Automatic update of dependency thoth-common from 0.9.21 to 0.9.22
