@@ -68,7 +68,6 @@ class CommandResult(object):
             "return_code": self.return_code,
             "command": self.command.cmd,
             "timeout": self.timeout,
-            "message": str(self),
         }
 
 
