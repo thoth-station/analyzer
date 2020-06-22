@@ -1,6 +1,8 @@
 import os
+import sys
 from setuptools import setup
 from pathlib import Path
+from setuptools.command.test import test as TestCommand
 
 
 def get_install_requires():
@@ -21,6 +23,28 @@ def get_version():
     raise ValueError("No version identifier found")
 
 
+class Test(TestCommand):
+    user_options = [("pytest-args=", "a", "Arguments to pass into py.test")]
+
+    def initialize_options(self):
+        super().initialize_options()
+        self.pytest_args = [
+            "--mypy",
+            "thoth",
+        ]
+
+    def finalize_options(self):
+        super().finalize_options()
+        self.test_args = []
+        self.test_suite = True
+
+    def run_tests(self):
+        import pytest
+
+        print(self.pytest_args)
+        sys.exit(pytest.main(self.pytest_args))
+
+
 VERSION = get_version()
 setup(
     name='thoth-analyzer',
@@ -35,6 +59,8 @@ setup(
     ],
     zip_safe=False,
     install_requires=get_install_requires(),
+    package_data={'thoth.analyzer': ['py.typed']},
+    cmdclass={'test': Test},
     command_options={
         'build_sphinx': {
             'version': ('setup.py', VERSION),

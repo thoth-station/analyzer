@@ -15,3 +15,7 @@ pytest = "*"
 pytest-timeout = "*"
 pytest-cov = "*"
 coala-bears = "*"
+pytest-mypy = "*"
+
+[requires]
+python_version = "3.6"

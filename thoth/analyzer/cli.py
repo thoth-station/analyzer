@@ -20,10 +20,15 @@
 import datetime
 import json
 import logging
+import os
 import platform
 import sys
 import time
-import typing
+from typing import Any
+from typing import Dict
+from typing import List
+from typing import Optional
+from typing import Union
 
 import click
 import distro
@@ -33,13 +38,13 @@ from thoth.common import SafeJSONEncoder
 from thoth.common import datetime2datetime_str
 
 _LOG = logging.getLogger(__name__)
+_ETC_OS_RELEASE = "/etc/os-release"
 
 
-def _get_click_arguments(click_ctx: click.core.Command) -> dict:
+def _get_click_arguments(click_ctx: click.Context) -> Dict[Optional[str], Any]:
     """Get arguments supplied to analyzer."""
-    arguments = {}
-
-    ctx = click_ctx
+    arguments: Dict[Optional[str], Any] = {}
+    ctx: Optional[click.Context] = click_ctx
     while ctx:
         # Ignore PycodestyleBear (E501)
         assert ctx.info_name not in arguments, "Analyzers cannot use nested sub-commands with same name"
@@ -64,12 +69,41 @@ def _get_click_arguments(click_ctx: click.core.Command) -> dict:
     return arguments
 
 
-def print_command_result(click_ctx: click.core.Command,
-                         result: typing.Union[dict, list], analyzer: str,
-                         analyzer_version: str, output: str = None,
-                         duration: float = None,
-                         pretty: bool = True,
-                         dry_run: bool = False) -> None:
+def _gather_os_release() -> Optional[Dict[str, str]]:
+    """Gather information about operating system used."""
+    if not os.path.isfile(_ETC_OS_RELEASE):
+        return None
+
+    try:
+        with open(_ETC_OS_RELEASE, "r") as os_release_file:
+            content = os_release_file.read()
+    except Exception:
+        return None
+
+    result = {}
+    for line in content.splitlines():
+        parts = line.split("=", maxsplit=1)
+        if len(parts) != 2:
+            continue
+
+        key = parts[0].lower()
+        value = parts[1].strip('"')
+
+        result[key] = value
+
+    return result
+
+
+def print_command_result(
+    click_ctx: click.Context,
+    result: Union[Dict[str, Any], List[Any]],
+    analyzer: str,
+    analyzer_version: str,
+    output: Optional[str] = None,
+    duration: Optional[float] = None,
+    pretty: bool = True,
+    dry_run: bool = False
+) -> None:
     """Print or submit results, nicely if requested."""
     metadata = {
         'analyzer': analyzer,
@@ -106,19 +140,24 @@ def print_command_result(click_ctx: click.core.Command,
         response = requests.post(output, json=content)
         response.raise_for_status()
         _LOG.info(
-            "Successfully submitted results to %r, response: %s", output, response.json())  # Ignore PycodestyleBear (E501)
+            "Successfully submitted results to %r, response: %s",
+            output,
+            response.json()
+        )
         return
 
-    kwargs = {}
+    kwargs = {
+        'cls': SafeJSONEncoder,
+    }
     if pretty:
         kwargs['sort_keys'] = True
         kwargs['separators'] = (',', ': ')
         kwargs['indent'] = 2
 
-    content = json.dumps(content, **kwargs, cls=SafeJSONEncoder)
+    serialized_content = json.dumps(content, **kwargs)
     if output is None or output == '-':
-        sys.stdout.write(content)
+        sys.stdout.write(serialized_content)
     else:
         _LOG.info("Writing results to %r", output)
         with open(output, 'w') as output_file:
-            output_file.write(content)
+            output_file.write(serialized_content)

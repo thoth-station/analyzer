@@ -4,3 +4,4 @@ thoth_analyzer.egg-info/
 dist/
 build/
 docs/source/thoth.*.rst
+.mypy_cache/

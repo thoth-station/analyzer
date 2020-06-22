@@ -19,23 +19,28 @@
 
 import json
 import logging
+from typing import Any
+from typing import Dict
+from typing import List
+from typing import Optional
+from typing import Union
 
 import delegator
 
 _LOG = logging.getLogger(__name__)
 
 
-class CommandResult(object):
+class CommandResult:
     """Representation of result of a command invocation."""
 
     def __init__(self, command: delegator.Command, is_json: bool = False):
-        """Initialiaztion of a command result wrapper for delegator."""
+        """Initialization of a command result wrapper for delegator."""
         self.command = command
         self.is_json = is_json
-        self._stdout = None
+        self._stdout: Optional[Union[Dict[Any, Any], str]] = None
 
     @property
-    def stdout(self):
+    def stdout(self) -> Optional[Union[str, Dict[Any, Any]]]:
         """Standard output from invocation."""
         if self._stdout is None:
             if self.is_json:
@@ -46,21 +51,21 @@ class CommandResult(object):
         return self._stdout
 
     @property
-    def stderr(self):
+    def stderr(self) -> str:
         """Standard error output from invocation."""
-        return self.command.err
+        return self.command.err  # type: ignore
 
     @property
-    def return_code(self):
+    def return_code(self) -> int:
         """Process return code."""
-        return self.command.return_code
+        return self.command.return_code  # type: ignore
 
     @property
-    def timeout(self):
+    def timeout(self) -> int:
         """Timeout that was given to the invoked process to finish."""
-        return self.command.timeout
+        return self.command.timeout  # type: ignore
 
-    def to_dict(self):
+    def to_dict(self) -> Dict[str, Any]:
         """Represent command result as a dict."""
         return {
             'stdout': self.stdout,
@@ -79,24 +84,34 @@ class CommandError(RuntimeError, CommandResult):
     access to_dict() or other defined methods.
     """
 
-    def __init__(self, *args, command: delegator.Command,
-                 **command_result_kwargs):
+    def __init__(
+        self,
+        *args: Any,
+        command: delegator.Command,
+        **command_result_kwargs: Any
+    ) -> None:
         """Store information about command error."""
         RuntimeError.__init__(self, *args)
         CommandResult.__init__(self, command=command,
                                **command_result_kwargs)
 
     @property
-    def stdout(self):
+    def stdout(self) -> Union[str, Dict[str, Any]]:
         """Standard output from invocation.
 
         Override implementation for errors, not all tools product JSON or
         errors so try to avoid parsing JSON implicitly.
         """
-        return self.command.out
+        return self.command.out  # type: ignore
 
 
-def run_command(cmd, timeout=60, is_json=False, env=None, raise_on_error=True):
+def run_command(
+    cmd: Union[List[str], str],
+    timeout: int = 60,
+    is_json: bool = False,
+    env: Optional[Dict[str, str]] = None,
+    raise_on_error: bool = True
+) -> CommandResult:
     """Run the given command, block until it finishes."""
     _LOG.debug("Running command %r", cmd)
     command = delegator.run(cmd, block=True, timeout=timeout, env=env)
