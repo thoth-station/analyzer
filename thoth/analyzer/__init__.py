@@ -1,9 +1,9 @@
 """Shared code logic in Thoth analyzers."""
 
-from .cli import print_command_result
-from .command import CommandError
-from .command import CommandResult
-from .command import run_command
+from .cli import print_command_result  # noqa
+from .command import CommandError  # noqa
+from .command import CommandResult  # noqa
+from .command import run_command  # noqa
 
 
 __title__ = "thoth-analyzer"
