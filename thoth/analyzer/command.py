@@ -36,7 +36,7 @@ class CommandResult(object):
 
     @property
     def stdout(self):
-        """Standard output from invocation."""
+        """Return standard output from invocation."""
         if self._stdout is None:
             if self.is_json:
                 self._stdout = json.loads(self.command.out)
@@ -47,7 +47,7 @@ class CommandResult(object):
 
     @property
     def stderr(self):
-        """Standard error output from invocation."""
+        """Return standard error output from invocation."""
         return self.command.err
 
     @property
@@ -85,7 +85,7 @@ class CommandError(RuntimeError, CommandResult):
 
     @property
     def stdout(self):
-        """Standard output from invocation.
+        """Return standard output from invocation.
 
         Override implementation for errors, not all tools product JSON or
         errors so try to avoid parsing JSON implicitly.
