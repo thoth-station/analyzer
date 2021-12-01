@@ -14,7 +14,6 @@ thoth-common = "*"
 pytest = "*"
 pytest-timeout = "*"
 pytest-cov = "*"
-coala-bears = "*"
 
 [requires]
 python_version = "3.8"
