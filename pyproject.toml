@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "thoth-analyzer"
+description = "Analyzer library for project Thoth."
+authors = [
+  { name="Fridolin Pokorny", email="fridolin@redhat.com" },
+]
+license = {text = "GPLv3+"}
+readme = "README.rst"
+dynamic = ["version", "dependencies"]
+
+[tool.setuptools.dynamic]
+version = {attr = "thoth.analyzer.__version__"}
+dependencies = {file = ["requirements.txt"]}
+
+[tool.setuptools]
+zip-safe = false
+packages = ["thoth.analyzer"]
